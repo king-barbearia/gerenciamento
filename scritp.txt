@@ -1,0 +1,56 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const userNameDisplay = document.getElementById("userNameDisplay");
+  const appointmentsList = document.getElementById("appointmentsList");
+  const agendamentosLink = document.getElementById("agendamentosLink");
+
+  // Exibir nome do usuário (se disponível)
+  const userName = localStorage.getItem("userName");
+  if (userName) {
+    userNameDisplay.innerText = `Bem-vindo, ${userName}!`;
+  } else {
+    userNameDisplay.innerText = "Bem-vindo!";
+  }
+
+  // Adicionar evento ao clicar na aba "Agendamentos"
+  agendamentosLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    fetchAppointments("Wallace");
+    fetchAppointments("Mateus");
+  });
+
+  function fetchAppointments(barber) {
+    fetch(
+      `http://127.0.0.1:8080/appointments?barber=${encodeURIComponent(barber)}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.appointments) {
+          data.appointments.forEach((appointment) => {
+            const appointmentElement = document.createElement("div");
+            appointmentElement.innerHTML = `
+              <h3>${appointment.service}</h3>
+              <p>Barbeiro: ${barber}</p>
+              <p>Data: ${formatDate(appointment.date)}</p>
+              <p>Horário: ${appointment.time}</p>
+              <p>Duração: ${appointment.duration} minutos</p>
+              <p>Valor: ${appointment.value}</p>
+              <hr/>
+            `;
+            appointmentsList.appendChild(appointmentElement);
+          });
+        } else {
+          const noAppointments = document.createElement("p");
+          noAppointments.innerText = `Você Não Tem Nenhum Agendamento${barber}.`;
+          appointmentsList.appendChild(noAppointments);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching appointments:", error);
+      });
+  }
+
+  function formatDate(dateString) {
+    const [year, month, day] = dateString.split("-");
+    return `${day}/${month}/${year}`;
+  }
+});

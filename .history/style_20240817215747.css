@@ -1,0 +1,42 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+
+footer {
+  background-color: #f8f9fa; /* Cor de fundo clara */
+  text-align: center;
+  padding: 1rem; /* Ajuste o padding conforme necessário */
+  margin-top: auto; /* Empurra o footer para o fundo */
+}
+
+#ico-atl {
+  position: absolute;
+  margin: -45px 150px;
+}
+
+#confirm {
+  width: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#exclude {
+  width: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #ico-atl {
+    display: flex;
+  }
+}
+
+list-group-item
