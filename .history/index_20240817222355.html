@@ -124,19 +124,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./script.js"></script>
-    <script src="https://cdn.socket.io/3.0.3/socket.io.min.js"></script>
-    <script>
-      const socket = io("https://kinkbarbearia.pythonanywhere.com");
-
-      // Testando a conexão
-      socket.on("connect", () => {
-        console.log("Conectado ao servidor Socket.IO");
-      });
-
-      // Recebendo eventos do servidor
-      socket.on("new_booking", (data) => {
-        console.log("Novo Agendamento:", data);
-      });
-    </script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
   </body>
 </html>

@@ -124,7 +124,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./script.js"></script>
-    <script src="https://cdn.socket.io/3.0.3/socket.io.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script>
       const socket = io("https://kinkbarbearia.pythonanywhere.com");
 
@@ -135,7 +135,7 @@
 
       // Recebendo eventos do servidor
       socket.on("new_booking", (data) => {
-        console.log("Novo Agendamento:", data);
+        console.log("Nova reserva recebida:", data);
       });
     </script>
   </body>
